@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jai Akah | Full-Stack & AppSec Engineer</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #0b0f1c;
+      color: #eef2ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* custom neon glow scroll */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #22d3ee;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* glass morphism header */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 28, 0.85);
+      border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+      z-index: 100;
+      padding: 18px 0;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c084fc, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: #cbd5e6;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #22d3ee;
+      text-shadow: 0 0 5px #22d3ee80;
+    }
+
+    .btn-primary {
+      background: linear-gradient(95deg, #1e1b4b, #0f172a);
+      border: 1px solid #22d3ee;
+      color: #22d3ee;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #22d3ee20;
+      box-shadow: 0 0 12px #22d3ee80;
+      transform: translateY(-2px);
+    }
+
+    /* hero */
+    .hero {
+      padding: 80px 0 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      background: #1e293b;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      border-left: 3px solid #22d3ee;
+    }
+
+    .hero-content h1 {
+      font-size: 3.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ffffff, #a5f3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+      margin-bottom: 32px;
+      max-width: 550px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .stat h3 {
+      font-size: 1.8rem;
+      color: #22d3ee;
+    }
+    .stat p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    .hero-avatar {
+      flex: 0.8;
+      text-align: center;
+      background: radial-gradient(circle at 30% 20%, #1e293b, #020617);
+      border-radius: 50%;
+      padding: 20px;
+      border: 1px solid #22d3ee40;
+      box-shadow: 0 20px 35px -15px #00000080;
+    }
+
+    .hero-avatar i {
+      font-size: 10rem;
+      color: #c084fc;
+      filter: drop-shadow(0 0 8px #22d3ee);
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #22d3ee, #c084fc);
+      border-radius: 4px;
+    }
+
+    /* skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+      margin-bottom: 60px;
+    }
+
+    .skill-tag {
+      background: #111827;
+      border: 1px solid #2d3a5e;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .skill-tag i {
+      margin-right: 8px;
+      color: #22d3ee;
+    }
+
+    .skill-tag:hover {
+      border-color: #22d3ee;
+      transform: scale(1.02);
+      background: #1e293b;
+    }
+
+    /* Experience & pentest cards */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .exp-card {
+      background: #0f1222;
+      border-radius: 28px;
+      padding: 28px;
+      border: 1px solid #1e293b;
+      transition: all 0.25s;
+      backdrop-filter: blur(4px);
+    }
+
+    .exp-card:hover {
+      border-color: #22d3ee80;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px #00000066;
+    }
+
+    .exp-icon {
+      font-size: 2.2rem;
+      color: #22d3ee;
+      margin-bottom: 18px;
+    }
+
+    .exp-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .exp-company {
+      color: #c084fc;
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exp-desc {
+      color: #b9c7da;
+      font-size: 0.9rem;
+      list-style-position: inside;
+      padding-left: 0;
+    }
+    .exp-desc li {
+      margin-bottom: 8px;
+    }
+
+    /* certificate / cta */
+    .pentest-highlight {
+      background: linear-gradient(145deg, #0a0e1a, #030617);
+      border-radius: 36px;
+      padding: 40px;
+      margin-bottom: 60px;
+      border: 1px solid #22d3ee30;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .pentest-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    .pentest-text i {
+      color: #f97316;
+    }
+
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-bottom: 70px;
+    }
+
+    .project-card {
+      background: #0f1222;
+      border-radius: 24px;
+      padding: 24px;
+      transition: 0.2s;
+      border: 1px solid #1f2a44;
+    }
+    .project-card:hover {
+      border-color: #22d3ee;
+    }
+    .project-card i {
+      font-size: 2rem;
+      background: linear-gradient(145deg, #22d3ee, #c084fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .project-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .project-tech {
+      font-size: 0.75rem;
+      color: #22d3ee;
+      margin: 12px 0;
+      letter-spacing: 0.5px;
+    }
+    .project-card p {
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+
+    /* contact */
+    .contact-area {
+      background: #0a0e1a;
+      border-radius: 40px;
+      padding: 48px 32px;
+      margin: 40px 0 60px;
+      text-align: center;
+      border: 1px solid #1e2a4a;
+    }
+    .contact-area h3 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 32px 0 20px;
+    }
+    .social-links a {
+      color: #cbd5e6;
+      font-size: 1.8rem;
+      transition: 0.2s;
+    }
+    .social-links a:hover {
+      color: #22d3ee;
+      transform: translateY(-4px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      border-top: 1px solid #1e293b;
+      color: #7e8aa8;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 780px) {
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-bar">
+    <div class="logo">JA<span>//</span>AKAH</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills-core">Skills</a>
+      <a href="#projects">Work</a>
+      <a href="#contact">Connect</a>
+    </div>
+    <a href="#contact" class="btn-primary">Hire me <i class="fas fa-arrow-right"></i></a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="container hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-shield-haltered"></i> Full-Stack Dev + Pen Tester</div>
+      <h1>Jai Akah<br>breaking & building secure apps</h1>
+      <p>8+ years of experience crafting high-performance web applications, combined with offensive security mindset — ethical hacking, red teaming, and vulnerability research.</p>
+      <div class="hero-stats">
+        <div class="stat"><h3>50+</h3><p>projects delivered</p></div>
+        <div class="stat"><h3>15+</h3><p>bug bounties & CVEs</p></div>
+        <div class="stat"><h3>100%</h3><p>client security focus</p></div>
+      </div>
+    </div>
+    <div class="hero-avatar">
+      <i class="fas fa-user-astronaut"></i>
+    </div>
+  </section>
+
+  <!-- Experience + penetration testing area (combined) -->
+  <div class="container" id="experience">
+    <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional edge</h2>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon"><i class="fas fa-code"></i></div>
+        <h3>Senior Full-Stack Engineer</h3>
+        <div class="exp-company"><i class="fas fa-building"></i> Nexify Labs · 2022 – Present</div>
+        <ul class="exp-desc">
+          <li>Architect micro-frontends with React, Vue & Node.js, serving 2M+ users.</li>
+          <li>Led API security hardening, preventing OWASP Top 10 risks (SQLi, XSS, IDOR).</li>
+          <li>Mentored 6 devs in secure SDLC & code review automation.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon"><i class="fas fa-skull-crossbones"></i></div>
+        <h3>Penetration Tester (Red Team)</h3>
+        <div class="exp-company"><i class="fas fa-user-secret"></i> CyberGuardian · 2020 – 2022</div>
+        <ul class="exp-desc">
+          <li>Conducted 30+ internal/external network pentests, web & mobile apps.</li>
+          <li>Discovered critical RCE & Auth bypasses, rewarded by HackerOne hall of fame.</li>
+          <li>Built custom Burp extensions & fuzzing frameworks for zero-day research.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <h3>DevSecOps Consultant</h3>
+        <div class="exp-company"><i class="fas fa-shield-alt"></i> SecureStack · 2018 – 2020</div>
+        <ul class="exp-desc">
+          <li>Integrated SAST/DAST into CI/CD pipelines (GitHub Actions, Jenkins).</li>
+          <li>Performed threat modeling for fintech & healthcare clients (HIPAA/GDPR).</li>
+          <li>Reduced vuln remediation time by 65% via automated triage.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Special pentesting highlight banner -->
+    <div class="pentest-highlight">
+      <div class="pentest-text">
+        <h3><i class="fas fa-bug"></i> Certified Offensive Security & AppSec</h3>
+        <p>OSCP | Burp Suite Certified Practitioner | AWS Security Specialty — Real-world adversarial simulation, code-level exploits, and secure architecture reviews. Trusted by Fortune 500 startups to harden digital assets.</p>
+      </div>
+      <i class="fas fa-shield-virus" style="font-size: 4rem; color: #22d3ee80;"></i>
+    </div>
+  </div>
+
+  <!-- Skills Section (FullStack + PenTesting) -->
+  <div class="container" id="skills-core">
+    <h2 class="section-title"><i class="fas fa-cogs"></i> core arsenal</h2>
+    <div class="skills-grid">
+      <div class="skill-tag"><i class="fab fa-react"></i> React / Next.js</div>
+      <div class="skill-tag"><i class="fab fa-node-js"></i> Node.js / Express</div>
+      <div class="skill-tag"><i class="fas fa-database"></i> PostgreSQL / MongoDB</div>
+      <div class="skill-tag"><i class="fab fa-python"></i> Python / Flask</div>
+      <div class="skill-tag"><i class="fab fa-vuejs"></i> Vue / Nuxt</div>
+      <div class="skill-tag"><i class="fas fa-cloud"></i> AWS / Docker / K8s</div>
+      <div class="skill-tag"><i class="fas fa-terminal"></i> Bash / PowerShell</div>
+      <div class="skill-tag"><i class="fas fa-shield-haltered"></i> Metasploit / Burp Suite</div>
+      <div class="skill-tag"><i class="fas fa-laptop-code"></i> XSS / SQLi / SSRF</div>
+      <div class="skill-tag"><i class="fas fa-network-wired"></i> Nmap / Wireshark / BloodHound</div>
+      <div class="skill-tag"><i class="fab fa-github"></i> GitHub Actions / Jenkins</div>
+      <div class="skill-tag"><i class="fas fa-key"></i> OAuth / JWT / Zero Trust</div>
+    </div>
+  </div>
+
+  <!-- Projects showcase : fullstack + secure apps -->
+  <div class="container" id="projects">
+    <h2 class="section-title"><i class="fas fa-rocket"></i> featured projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <i class="fas fa-shield-alt"></i>
+        <h4>VaultGuard Auth</h4>
+        <div class="project-tech">React · Node · OAuth2 · mTLS</div>
+        <p>Enterprise identity platform with adaptive MFA + session protection. Passed 3rd party pentest with zero critical findings.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-chart-line"></i>
+        <h4>BugBounty Dashboard</h4>
+        <div class="project-tech">Vue · Flask · MongoDB · ELK</div>
+        <p>Real-time collaborative vulnerability management tool used by 40+ ethical hackers, integrated with Jira & Slack.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-fingerprint"></i>
+        <h4>ZeroTrace Proxy</h4>
+        <div class="project-tech">Go · WireGuard · Python</div>
+        <p>Custom pentesting proxy with traffic manipulation - auto-detects API misconfigs & JWT weaknesses. Open-source.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-store"></i>
+        <h4>EcoSwap Marketplace</h4>
+        <div class="project-tech">Next.js · Tailwind · Stripe · Prisma</div>
+        <p>Full-stack sustainable commerce with advanced rate-limiting, CSP headers and PCI DSS compliance layer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact & Social -->
+  <div class="container" id="contact">
+    <div class="contact-area">
+      <h3>Let’s secure & scale <i class="fas fa-hand-peace"></i></h3>
+      <p>Whether you need a resilient full-stack app or deep penetration testing — I combine both worlds.</p>
+      <div class="social-links">
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="HackTheBox"><i class="fas fa-shield-haltered"></i></a>
+      </div>
+      <a href="#" class="btn-primary" style="margin-top: 20px; display: inline-block;"><i class="fas fa-envelope"></i> jai.akah@secdev.me</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Jai Akah — Full-Stack Dev & Offensive Security Engineer. All bytes shielded.</p>
+    <p style="margin-top: 8px; font-size: 0.75rem;"><i class="fas fa-terminal"></i> #RedTeam #MERN #Vue #PenTest #DevSecOps</p>
+  </div>
+</footer>
+
+<!-- Simple JavaScript for interactivity: dynamic year + console greeting + active nav highlight -->
+<script>
+  // dynamic footer year can be added, but static is fine. small interactive typing effect? we do console greeting & smooth scroll enhancement
+  (function() {
+    console.log("%c🔥 Jai Akah Portfolio — Full-Stack + Penetration Testing loaded | Secure mindset", "color: #22d3ee; font-size: 16px; font-weight: bold;");
+    
+    // highlight current nav section on scroll (simple)
+    const sections = document.querySelectorAll("section[id], div[id]");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    
+    function setActiveLink() {
+      let current = "";
+      const scrollPos = window.scrollY + 120;
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.style.color = "#cbd5e6";
+        link.style.textShadow = "none";
+        if (link.getAttribute("href") === `#${current}`) {
+          link.style.color = "#22d3ee";
+          link.style.textShadow = "0 0 3px #22d3ee80";
+        }
+      });
+    }
+    window.addEventListener("scroll", setActiveLink);
+    setActiveLink();
+
+    // add a small easter egg: alert user that security matters? no alert but cool effect on avatar
+    const avatar = document.querySelector(".hero-avatar");
+    if(avatar) {
+      avatar.addEventListener("click", () => {
+        const messages = ["🛡️ Ready to break & build securely", "🐧 Full-Stack + Red Team mindset", "⚡ Jai Akah — let's hack the right way"];
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        const notif = document.createElement("div");
+        notif.innerText = randomMsg;
+        notif.style.position = "fixed";
+        notif.style.bottom = "20px";
+        notif.style.left = "20px";
+        notif.style.backgroundColor = "#1e293b";
+        notif.style.borderLeft = "4px solid #22d3ee";
+        notif.style.padding = "10px 20px";
+        notif.style.borderRadius = "12px";
+        notif.style.fontSize = "0.85rem";
+        notif.style.zIndex = "999";
+        notif.style.boxShadow = "0 8px 20px black";
+        notif.style.backdropFilter = "blur(8px)";
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 2200);
+      });
+    }
+
+    // add smooth contact button console hint
+    const contactBtn = document.querySelector(".contact-area .btn-primary");
+    if(contactBtn) {
+      contactBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("📧 jai.akah@secdev.me | PGP available for secure communication — Let’s collaborate on secure systems!");
+      });
+    }
+  })();
+</script>
+</body>
+</html>
